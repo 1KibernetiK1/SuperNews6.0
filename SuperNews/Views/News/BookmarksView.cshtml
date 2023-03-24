@@ -1,0 +1,41 @@
+﻿@model SuperNews.BusinessLogic.Bookmarks
+
+@{
+    ViewData["Title"] = "ЗАКЛАДКИ";
+
+    string pathAndQuery =
+            Context.Request.Path +
+            Context.Request.QueryString;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Дата создания</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model.Records)
+            {
+                <tr>
+                    <td>@record.News.Title</td>
+                    <td>@record.News.Description</td>
+                    <td>@record.News.CreationDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a class="btn btn-light float-left"
+       href="@ViewBag.UrlReturn">
+        Продолжить
+    </a>
+
+   
+</div>
+

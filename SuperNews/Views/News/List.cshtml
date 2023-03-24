@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNetCore.Authorization;
+@using SuperNews.UsersRoles;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model SuperNews.Models.NewsListViewModel
+@inject IAuthorizationService AuthorizationService
+
+@{
+    string pathAndQuery =
+            Context.Request.Path +
+            Context.Request.QueryString;
+
+    ViewData["Title"] = Model.Rubrics == null
+    ? "Новости"
+    : $"Новости ({Model.Rubrics})";
+}
+
+<h1>Новости</h1>
+<div id="accordion">
+    <div >
+      
+            <h5 class="mb-0">
+                <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Поиск по названию и по рубрикам
+                </button>
+            </h5>
+
+
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <form method="get">
+                    <div class="form-group">
+                        <label>Имя: </label>
+                        <input asp-for="Name" class="form-control" id="exampleFormControlInput1" />
+
+                        <label>Компания: </label>
+                        <select name="Rubric" asp-items="Model.Rubrics" class="form-control" id="exampleFormControlSelect1"></select>
+
+                        <input type="submit" value="Поиск" class="btn btn-primary" style="margin-top: 10px" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@if (User.IsInRole(AppRoles.Moderator) | User.IsInRole(AppRoles.Administrator) | User.IsInRole(AppRoles.Redactor))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <tbody>
+@foreach (var item in Model.News) {
+        <tr>
+                <td class="news_td">
+                    <img width="200" height="200"
+                         src="~/NewsImages/@item.ImageUrl" />
+
+                    <span class="news_info">
+                        <a asp-action="Details"
+                       asp-controller="News"
+                       asp-route-id="@item.NewsId"
+                       asp-route-urlReturn="@pathAndQuery">@Html.DisplayFor(modelItem => item.Title)</a>
+
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+
+                        @if (User.IsInRole(AppRoles.Moderator) | User.IsInRole(AppRoles.Administrator) | User.IsInRole(AppRoles.Redactor))
+                        {
+                            <a asp-action="Edit" asp-controller="News" asp-route-id="@item.NewsId" asp-route-urlReturn="@pathAndQuery" class="btn btn-light">Изменить</a>
+                            <a asp-action="Delete" asp-controller="News" asp-route-id="@item.NewsId" asp-route-urlReturn="@pathAndQuery" class="btn btn-danger">Удалить</a>
+                        }
+                    </span>
+                 
+                </td>
+         
+            
+          @*  <td>
+                    <a asp-action="AddToBookmarks"
+                   asp-controller="News"
+                   asp-route-id="@item.NewsId"
+                   asp-route-urlReturn="@pathAndQuery"
+                       class="btn btn-light">
+                        Отправить в закладки
+                    </a>
+                    <a asp-action="CommentIndex"
+                   asp-controller="News" 
+                    class="btn btn-light">Написать комментарии</a>
+            </td>*@
+           
+        </tr>
+}
+    </tbody>
+</table>

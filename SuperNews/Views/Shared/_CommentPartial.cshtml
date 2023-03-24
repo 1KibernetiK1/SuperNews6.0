@@ -1,0 +1,27 @@
+﻿@model SuperNews.Domains.Comment
+@*@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager*@
+@{
+
+}
+
+
+@foreach (var item in ViewBag.Comment)
+{
+
+    <div class="card-comment" data-id="@item.CommentId" style="text-align:right">
+        <img class="img-circle img-sm" alt="User Image" style="float:right; padding-left:4px">
+
+        <div class="comment-text">
+            <span class="username">
+                @item.Username
+                <span class="text-muted float-left"> @item.CommentDate</span>
+            </span>
+            @item.CommentText
+        </div>
+     </div>
+
+}
+
+

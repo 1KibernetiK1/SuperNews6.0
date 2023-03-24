@@ -1,0 +1,41 @@
+﻿@model IEnumerable<string>
+
+@{
+    string activeRubric = ViewContext
+    .RouteData
+    .Values["rubricName"]
+    ?.ToString();
+}
+
+<div class="list-group">
+
+    <a class="list-group-item list-group-item-action"
+       asp-action="List"
+       asp-controller="News"
+       asp-route-page="1"
+       asp-route-categoryName="">
+        all
+    </a>
+
+
+    @foreach (var name in Model)
+    {
+        string activeClass = name == activeRubric ? "list-group-item-primary" : "";
+
+        <a class="list-group-item list-group-item-action @activeClass"
+       asp-action="List"
+       asp-controller="News"
+       asp-route-categoryName="@name"
+       asp-route-page="1">
+            @name
+        </a>
+
+        <!--
+         Html.ActionLink(
+             name,
+             "ListView",
+             "Product",
+             new { categoryName = name, page = 1 })
+        -->
+    }
+</div>

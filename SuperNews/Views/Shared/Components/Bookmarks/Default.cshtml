@@ -1,0 +1,21 @@
+﻿@model SuperNews.BusinessLogic.Bookmarks
+@{
+    string pathAndQuery =
+    Context.Request.Path +
+    Context.Request.QueryString;
+}
+
+@if (Model.NewsCount > 0)
+{
+    <a class="btn btn-light"
+   asp-action="BookmarksView"
+   asp-controller="News"
+   asp-route-urlReturn="@pathAndQuery">
+        <span class="material-symbols-outlined">
+            Закладка
+        </span>
+        [@Model.NewsCount]
+    </a>
+}
+
+

@@ -1,0 +1,33 @@
+﻿@using SuperNews.Models
+@model List<SuperNews.Models.UserRolesViewModel>
+
+<h1>User Roles</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@string.Join(" , ", user.Roles.ToList())</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Admin" asp-action="Edit" asp-route-userId="@user.UserId">Изменить роль</a>
+                  @*  <form asp-action="DeleteUser" asp-route-userId="@user.UserId">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                    </form>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-info" asp-action="CreateUser">Создать пользователя</a>
+<a class="btn btn-info" asp-action="Index">Список ролей</a>
