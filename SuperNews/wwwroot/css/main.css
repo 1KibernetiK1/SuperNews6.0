@@ -908,10 +908,13 @@ ul.link-list li {
         background-color: #0882a1;
         box-shadow: inset 0px 1px 5px 1px rgba(0, 0, 0, 0.05), 0px 0px 5px 1px rgba(255, 255, 255, 0.05); }
 
+
+    
 /* Banner */
 #banner-wrapper {
-  background: #c8d2bc url(../sass/images/bg1.png);
-  padding: 2em 0; }
+    background: #c8d2bc url(../sass/images/bg1.png);
+    padding: 2em 0;
+}
 
 #banner {
   position: relative;

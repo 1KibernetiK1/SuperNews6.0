@@ -19,7 +19,7 @@
     <div >
       
             <h5 class="mb-0">
-                <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <button class="btn btn-outline-info" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     Поиск по названию и по рубрикам
                 </button>
             </h5>
@@ -35,7 +35,7 @@
                         <label>Компания: </label>
                         <select name="Rubric" asp-items="Model.Rubrics" class="form-control" id="exampleFormControlSelect1"></select>
 
-                        <input type="submit" value="Поиск" class="btn btn-primary" style="margin-top: 10px" />
+                        <input type="submit" value="Поиск" class="btn btn-info" style="margin-top: 10px" />
                     </div>
                 </form>
             </div>
@@ -48,7 +48,7 @@
 @if (User.IsInRole(AppRoles.Moderator) | User.IsInRole(AppRoles.Administrator) | User.IsInRole(AppRoles.Redactor))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-outline-info" style="margin-top: 10px">Create New</a>
     </p>
 }
 <table class="table">

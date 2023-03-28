@@ -7,17 +7,14 @@
 <body>
     <div id="page-wrapper">
         @await Html.PartialAsync("HeaderPartial")
-        <div id="main">
-            <div class="container">
-                <div class="row main-row">
-                    <div class="col-8 col-12-medium">
-                        @RenderBody()
-                    </div>
-                </div>
-            </div>
+        <div class="container">
+            <main role="main" class="mainLayout pb-3">
+                @RenderBody()
+            </main>
         </div>
         @await Html.PartialAsync("FooterPartial")
     </div>
     @await Html.PartialAsync("ScriptsPartial")
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
