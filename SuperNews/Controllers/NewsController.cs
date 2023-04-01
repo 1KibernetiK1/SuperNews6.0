@@ -215,8 +215,7 @@ namespace SuperNews.Controllers
         public IActionResult CreateComment(Comment comment)
         {
             var curentuser = _userManager.GetUserName(User);
-            if (ModelState.IsValid)
-            {
+          
                 comment = new Comment()
                 {
                     CommentText = comment.CommentText,
@@ -227,7 +226,7 @@ namespace SuperNews.Controllers
                 _context.SaveChanges();
                 ModelState.Clear();
 
-            }
+            
             return RedirectToAction("CommentIndex", "News");
 
         }

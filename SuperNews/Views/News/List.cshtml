@@ -48,7 +48,7 @@
 @if (User.IsInRole(AppRoles.Moderator) | User.IsInRole(AppRoles.Administrator) | User.IsInRole(AppRoles.Redactor))
 {
     <p>
-        <a asp-action="Create" class="btn btn-outline-info" style="margin-top: 10px">Create New</a>
+        <a asp-action="Create" class="btn btn-outline-info" style="margin-top: 10px">Создать новость</a>
     </p>
 }
 <table class="table">
@@ -56,23 +56,56 @@
 @foreach (var item in Model.News) {
         <tr>
                 <td class="news_td">
-                    <img width="200" height="200"
-                         src="~/NewsImages/@item.ImageUrl" />
 
-                    <span class="news_info">
-                        <a asp-action="Details"
-                       asp-controller="News"
-                       asp-route-id="@item.NewsId"
-                       asp-route-urlReturn="@pathAndQuery">@Html.DisplayFor(modelItem => item.Title)</a>
 
+                    <div class="creation_date_info">
                         @Html.DisplayFor(modelItem => item.CreationDate)
+                    </div>
 
+                    <article class="article_info">
+                       
+
+                            <div class="img_info">
+                                 <a style="color: black;" asp-action="Details"
+                                       asp-controller="News"
+                                       asp-route-id="@item.NewsId"
+                                       asp-route-urlReturn="@pathAndQuery">
+                                     <img class="img_info_picture"
+                                     src="~/NewsImages/@item.ImageUrl" />
+                                     </a>
+                            </div>
+
+                            <div class="table_info_div">
+
+                                <div class="title_and_description">
+
+                                    <h2 class="title_info">
+                                        <a style="color: black;" asp-action="Details"
+                                       asp-controller="News"
+                                       asp-route-id="@item.NewsId"
+                                       asp-route-urlReturn="@pathAndQuery">@Html.DisplayFor(modelItem => item.Title)</a>
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+                           
+                    </article>
+
+                    <div class="admin_panel_info">
                         @if (User.IsInRole(AppRoles.Moderator) | User.IsInRole(AppRoles.Administrator) | User.IsInRole(AppRoles.Redactor))
                         {
                             <a asp-action="Edit" asp-controller="News" asp-route-id="@item.NewsId" asp-route-urlReturn="@pathAndQuery" class="btn btn-light">Изменить</a>
                             <a asp-action="Delete" asp-controller="News" asp-route-id="@item.NewsId" asp-route-urlReturn="@pathAndQuery" class="btn btn-danger">Удалить</a>
                         }
-                    </span>
+                    </div>
+
+                   
+
+
+                    
+
                  
                 </td>
          

@@ -10,8 +10,56 @@
     
 }
 
-.footer_flex {
-    display: flex;
-    justify-content: space-between;
+
+.table_info_div {
+    margin-left: 20px;
+    padding: 0;
+    width: calc(100% - 260px);
 }
+
+.title_and_description {
+    margin-top: -12px;
+    margin-bottom: 12px;
+}
+
+.img_info {
+    align-items: flex-start;
+    box-sizing: border-box;
+    display: flex;
+    margin: 0;
+}
+
+.img_info_picture {
+    width: 300px;
+    height: 300px;
+}
+
+.title_info {
+    font-size: 28px;
+    line-height: 32px;
+}
+
+.description_info {
+    margin: 6px 0 0;
+}
+
+.creation_date_info {
+    margin-bottom: -20px;
+    margin-left: -0.50px;
+}
+
+.admin_panel_info {
+    margin-top: -70px;
+    margin-bottom: 0 auto;
+}
+
+.article_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+
+
 
