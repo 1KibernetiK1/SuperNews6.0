@@ -35,12 +35,16 @@
 }
 
 .title_info {
-    font-size: 28px;
+    font-size: 30px;
     line-height: 32px;
 }
 
 .description_info {
     margin: 6px 0 0;
+    -webkit-line-clamp: 4; /* Число отображаемых строк */
+    display: -webkit-box; /* Включаем флексбоксы */
+    -webkit-box-orient: vertical; /* Вертикальная ориентация */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
 }
 
 .creation_date_info {

@@ -56,10 +56,7 @@ namespace SuperNews.DataAccessLayer
 
         public void Update(News model)
         {
-            var entry = _context.News.Find(model.NewsId);
-            _context.Entry(entry).CurrentValues.SetValues(model);
-            entry.NewsRubric = model.NewsRubric;
-            entry.RubricId = model.RubricId;
+            _context.Entry(model).State = EntityState.Modified;
             _context.SaveChanges();
         }
     }

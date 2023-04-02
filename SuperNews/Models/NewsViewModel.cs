@@ -4,9 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using System;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SuperNews.Models
 {
+    [AllowAnonymous]
     public class NewsViewModel
     {
         public IFormFile ImageFile { get; set; }
@@ -14,19 +16,15 @@ namespace SuperNews.Models
         [Display(Name = "Рубрика")]
         public int Rubric { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
         public long? NewsId { get; set; }
 
-        [Required]
         [Display(Name = "Заголовок новости")]
         public string Title { get; set; }
 
-        [Required]
         [Display(Name = "Описание новости")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Required]
         [Display(Name = "Дата созданиея новости")]
         [DataType(DataType.DateTime)]
         public DateTime CreationDate { get; set; } = DateTime.Now;

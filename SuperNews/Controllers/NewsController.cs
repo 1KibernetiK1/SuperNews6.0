@@ -172,6 +172,7 @@ namespace SuperNews.Controllers
             return RedirectToAction("List", "News");
         }
 
+        [HttpGet]
         public IActionResult Edit(long id)
         {
             var entity = _repositoryNews.Read(id);

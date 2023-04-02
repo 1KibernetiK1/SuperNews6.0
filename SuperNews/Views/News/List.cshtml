@@ -32,7 +32,7 @@
                         <label>Имя: </label>
                         <input asp-for="Name" class="form-control" id="exampleFormControlInput1" />
 
-                        <label>Компания: </label>
+                        <label>Рубрика: </label>
                         <select name="Rubric" asp-items="Model.Rubrics" class="form-control" id="exampleFormControlSelect1"></select>
 
                         <input type="submit" value="Поиск" class="btn btn-info" style="margin-top: 10px" />
@@ -86,6 +86,14 @@
                                        asp-route-urlReturn="@pathAndQuery">@Html.DisplayFor(modelItem => item.Title)</a>
                                     </h2>
 
+                                <div class="description_info">
+                                    <a style="color: black; text-decoration: none;" asp-action="Details"
+                                   asp-controller="News"
+                                   asp-route-id="@item.NewsId"
+                                   asp-route-urlReturn="@pathAndQuery">@Html.DisplayFor(modelItem => item.Description)</a>
+                                </div>
+
+
                                 </div>
 
                             </div>
@@ -96,8 +104,8 @@
                     <div class="admin_panel_info">
                         @if (User.IsInRole(AppRoles.Moderator) | User.IsInRole(AppRoles.Administrator) | User.IsInRole(AppRoles.Redactor))
                         {
-                            <a asp-action="Edit" asp-controller="News" asp-route-id="@item.NewsId" asp-route-urlReturn="@pathAndQuery" class="btn btn-light">Изменить</a>
-                            <a asp-action="Delete" asp-controller="News" asp-route-id="@item.NewsId" asp-route-urlReturn="@pathAndQuery" class="btn btn-danger">Удалить</a>
+                            <a asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-light">Изменить</a>
+                            <a asp-action="Delete" asp-route-id="@item.NewsId" asp-route-urlReturn="@pathAndQuery" class="btn btn-danger">Удалить</a>
                         }
                     </div>
 

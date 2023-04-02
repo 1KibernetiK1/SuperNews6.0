@@ -13,6 +13,7 @@
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+
             <div class="form-group">
                 <label>Загрузка картинки</label>
                 <input asp-for="ImageFile" type="file" accept="image/*" />
@@ -28,11 +29,6 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-              <div class="form-group">
                 <label asp-for="Rubric" class="control-label"></label>
                 <select name="Rubric" asp-for="Rubric">
                     <option value="1">Бизнес</option>
@@ -43,6 +39,11 @@
                     <option value="6">Наука</option>
                 </select>
                 <span asp-validation-for="Rubric" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
@@ -65,8 +66,11 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 
     @*Видимая загрузка картинки(jquery)*@
     <script>
@@ -94,3 +98,4 @@
         }
     </script>
 }
+
