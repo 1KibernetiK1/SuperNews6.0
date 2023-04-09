@@ -14,6 +14,10 @@
                                        asp-action="Index">
                                             Управление пользователями
                                         </a>
+                                        <a asp-controller="Rubric"
+                                                asp-action="Create">
+                                                Создание рубрик
+                                        </a>
                                 }
                                 @if (User.IsInRole(AppRoles.Redactor))
                                 {
@@ -29,6 +33,10 @@
                                        asp-controller="@AppRoles.Moderator"
                                        asp-action="Index">
                                             Управление новостями
+                                        </a>
+                                        <a asp-controller="Rubric"
+                                           asp-action="Create">
+                                            Создание рубрик
                                         </a>
                                 }
 

@@ -15,17 +15,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(20);
-    options.Cookie.HttpOnly = false;
-    options.Cookie.IsEssential = false;
-});
-
-
 builder.Services
     .AddIdentity<IdentityUser, IdentityRole>(options =>
     {
@@ -42,6 +31,16 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI()
     .AddDefaultTokenProviders();
+
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+    options.Cookie.HttpOnly = false;
+    options.Cookie.IsEssential = false;
+});
 
 builder.Services.AddControllersWithViews();
 
@@ -62,6 +61,7 @@ builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 builder.Services.AddRazorPages();
 
 builder.Services.AddTransient<IRepository<News>, NewsSqlRepository>();
+builder.Services.AddTransient<IRepository<Rubric>, RubricSqlRepository>();
 
 
 var app = builder.Build();

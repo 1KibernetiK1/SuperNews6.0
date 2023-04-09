@@ -8,7 +8,7 @@ namespace SuperNews.Domains
     public class Rubric
     {
         [Key]
-        public long RubricId { get; set; }
+        public long? RubricId { get; set; }
 
         public string? Name { get; set; }
 
