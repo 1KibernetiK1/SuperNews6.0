@@ -12,6 +12,12 @@
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            <div style="display: none;" class="form-group">
+                <label asp-for="NewsId" class="control-label"></label>
+                <input asp-for="NewsId" class="form-control" />
+                <span asp-validation-for="NewsId" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label>Загрузка картинки</label>
                 <input asp-for="ImageFile" type="file" accept="image/*" />
