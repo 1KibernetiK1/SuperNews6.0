@@ -1,0 +1,48 @@
+﻿@model SuperNews.Domains.Chat
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "ChatIndex";
+}
+
+<!-- /.card-header -->
+<div class="card-body">
+
+   
+
+</div>
+<!-- /.card-body -->
+@if (Model == null)
+{
+
+
+    <!-- /.card-footer -->
+    <div class="card-footer" style="text-align:right">
+        <form asp-controller="News" asp-action="CreateChat" method="post">
+                <input type="text" class="form-control form-control-sm"
+                   asp-for="ChatText"
+                       placeholder="Текст">
+                <div class="col-sm-7 offset-sm-3" style="float:right">
+                    <button style="margin-top: 5px" class="btn btn-primary" id="submit">нажмите</button>
+                </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="card-footer card-comments">
+
+        <partial name="_ChatPartial" />
+
+    </div>
+    <div class="card-footer" style="text-align:right">
+        <form asp-controller="News" asp-action="CreateChat" method="post">
+                <input type="text" class="form-control form-control-sm"
+                   asp-for="ChatText">
+            <button style="margin-top: 5px" class="btn btn-primary" id="submit">Нажмите</button>
+            
+        </form>
+    </div>
+}

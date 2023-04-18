@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SuperNews.Domains
 {
-    [Table("Comments")]
     public class Comment
     {
         [Key]
-        public long? CommentId { get; set; }
-
-        public int ParentId { get; set; }
-
+        public int Id { get; set; }
         public string CommentText { get; set; }
-
-        public string Username { get; set; }
-        public DateTime CommentDate { get; set; }
+        public DateTime Date { get; set; }
+        public string UserName { get; set; }
+        public int HaberId { get; set; }
     }
 }

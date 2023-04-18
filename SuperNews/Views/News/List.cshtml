@@ -57,6 +57,10 @@
         <tr>
                 <td class="news_td">
 
+                    <div style="display: none;">
+                        @Html.DisplayFor(modelItem => item.NewsId)
+                    </div>
+
                     <div class="creation_date_info">
                         @Html.DisplayFor(modelItem => item.CreationDate)
                     </div>             
@@ -102,29 +106,21 @@
 
                     <div class="admin_panel_info">
                         @if (User.IsInRole(AppRoles.Moderator) | User.IsInRole(AppRoles.Administrator) | User.IsInRole(AppRoles.Redactor))
-                        {
+                        {                     
                             <a asp-action="Edit" asp-route-id="@item.NewsId" class="btn btn-light">Изменить</a>
                             <a asp-action="Delete" asp-route-id="@item.NewsId" asp-route-urlReturn="@pathAndQuery" class="btn btn-danger">Удалить</a>
                         }
+                        <a asp-action="AddToBookmarks"
+                       asp-controller="News"
+                       asp-route-id="@item.NewsId"
+                       asp-route-urlReturn="@pathAndQuery"
+                           class="btn btn-light">
+                            Отправить в закладки
+                        </a>
                     </div>
 
                  
-                </td>
-         
-            
-          @*  <td>
-                    <a asp-action="AddToBookmarks"
-                   asp-controller="News"
-                   asp-route-id="@item.NewsId"
-                   asp-route-urlReturn="@pathAndQuery"
-                       class="btn btn-light">
-                        Отправить в закладки
-                    </a>
-                    <a asp-action="CommentIndex"
-                   asp-controller="News" 
-                    class="btn btn-light">Написать комментарии</a>
-            </td>*@
-           
+                </td>           
         </tr>
 }
     </tbody>

@@ -10,10 +10,12 @@ namespace SuperNews.DataAccessLayer
 
         public DbSet<Rubric> Rubrics { get; set; }
 
+        public DbSet<Chat> Chat { get; set; }
+
         public DbSet<Comment> Comments { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+         : base(options)
         {
             //Database.EnsureCreated();
         }

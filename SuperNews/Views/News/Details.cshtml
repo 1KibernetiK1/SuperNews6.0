@@ -1,25 +1,27 @@
-﻿@model SuperNews.Domains.News
+﻿@model SuperNews.Domains.NewsAndComments
 
 @{
     ViewData["Title"] = "Details";
 }
 
 <div>
-    <input type="hidden" id="NewsId" value="@Model.NewsId" />
-    <h3>@Html.DisplayFor(model => model.Title)</h3>
-    <h5>@Html.DisplayFor(model => model.CreationDate)</h5>
+    <input type="hidden" id="NewsId" value="@Model.news.NewsId" />
+    <h3>@Html.DisplayFor(model => model.news.Title)</h3>
+    <h5>@Html.DisplayFor(model => model.news.CreationDate)</h5>
     <div class="creation_date_info" role="group" aria-label="Vertical radio toggle button group">
         <input style="display: none;" runat="server" type="radio" class="btn-check btn-sm " name="vbtn-radio" id="vbtn-radio1" autocomplete="off">
         <label id="label_like" class="btn btn-outline-success justify-content-end" for="vbtn-radio1">
-            <h5 id="likeCount" class="like d-inline fs-4">@Model.Likes</h5>
+            <h5 id="likeCount" class="like d-inline fs-4">@Model.news.Likes</h5>
             <i class="fas fa-chevron-up"></i>
         </label>
         <input runat="server" style="display: none;" type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
         <label id="label_dislike" class="btn btn-outline-danger justify-content-end" for="vbtn-radio2">
-            <h5 id="dislikeCount" class="dislike d-inline fs-4">@Model.Dislikes</h5>
+            <h5 id="dislikeCount" class="dislike d-inline fs-4">@Model.news.Dislikes</h5>
             <i class="fas fa-chevron-down"></i>
         </label>
+        <p class="fw-bolder">@Model.news.Views Просмотров</p>
     </div>
+    
     <hr />
     <div class="details_info">
            
@@ -29,18 +31,66 @@
 
         <div class="detail_img">
             <img class="img_deta"
-                 src="~/NewsImages/@Model.ImageUrl" />
+                 src="~/NewsImages/@Model.news.ImageUrl" />
         </div>
         <div class="detail_description">
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.news.Description)
         </div>     
       
     </div>
-</div>
-<div>
-    @*<span class="btn btn-outline-info">@Html.ActionLink("Edit", "Edit", new {  id = Model.NewsId }) </span> |*@
-    <a class="btn btn-info" asp-action="List">Вернуться к новостям</a>
-</div>
+
+
+        <h3>Комментарии</h3>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form asp-action="Details" asp-controller="News" method="post">
+                <div class="input-group mb-3">
+                    <input type="hidden" name="UserName" value="@User.Identity.Name" />
+                    <input type="hidden" name="HaberId" value="@Model.news.NewsId" />
+                    <input type="hidden" name="Date" value="@DateTime.Now" />
+                    <input type="text" name="CommentText" class="form-control" placeholder="Ваш комментарии" aria-label="Ваш комментарии" aria-describedby="button-addon2" required>
+                    <button class="btn btn-outline-success" type="submit" id="button-addon2">Отправить</button>
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                Доступ к комментариям запрещен <a class="link-primary" asp-area="Identity" asp-page="/Account/Login">зайдите под логином</a>
+                или <a class="link-primary" asp-area="Identity" asp-page="/Account/Register"> зарегистрируйтесь.</a>
+            </div>
+        }
+
+        <div>
+            <ul>
+                @foreach (var comment in Model.comments)
+                {
+                    if (Model.comments.Count != 0)
+                    {
+                        <li class="my-2">
+                            <div class="card w-75">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <p>@comment.CommentText</p>
+                                        <footer class="blockquote-footer text-right"> <b>@comment.UserName</b> @comment.Date</footer>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><p>Комментарии отсутствуют</p></li>
+                    }
+
+                }
+
+            </ul>
+            <a class="btn btn-info" asp-action="List">Вернуться к новостям</a>
+        </div>
+    </div>
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>

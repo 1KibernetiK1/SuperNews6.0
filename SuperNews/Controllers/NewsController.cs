@@ -26,13 +26,19 @@ namespace SuperNews.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<NewsController> _logger;
+        NewsAndComments _newsAndComments =new NewsAndComments();
 
-        public NewsController(IRepository<News> repositoryArticle, ApplicationDbContext context, UserManager<IdentityUser> userManager, ILogger<NewsController> logger)
+        public NewsController(IRepository<News> repositoryArticle, 
+            ApplicationDbContext context,
+            UserManager<IdentityUser> userManager, 
+            ILogger<NewsController> logger
+            )
         {
             _repositoryNews = repositoryArticle;
             _context = context; 
             _userManager = userManager;
-            _logger = logger; 
+            _logger = logger;
+
         }
 
         public IActionResult BookmarksView(string urlReturn)
@@ -124,13 +130,35 @@ namespace SuperNews.Controllers
 
         }
 
+        [HttpGet]
         public IActionResult Details(long id)
         {
-            var entry = _context
-             .News
-             .FirstOrDefault(p => p.NewsId == id);
+            _context.News.Find(id).Views++;
+            _context.SaveChanges();
+            _newsAndComments.news = _context.News.Find(id);
+            _newsAndComments.comments = _context.Comments.Where(n => n.HaberId == id).ToList();
 
-            return View(entry);
+            return View("Details", _newsAndComments);
+        }
+
+        [HttpPost]
+        public IActionResult Details(Comment comment)
+        {
+            if (comment != null)
+            {
+             
+                    Comment cm = new Comment()
+                    {
+                        CommentText = comment.CommentText,
+                        Date = comment.Date,
+                        HaberId = comment.HaberId,
+                        UserName = comment.UserName,
+                    };
+                    _context.Comments.Add(cm);
+                    _context.SaveChanges();
+
+            }
+            return RedirectToAction("Details", "News", comment.HaberId);
         }
 
         [Authorize]
@@ -239,21 +267,21 @@ namespace SuperNews.Controllers
             return View();
         }
 
-        public IActionResult CommentIndex()
+        public IActionResult ChatIndex()
         {
-            ViewBag.Comment = _context.Comments.OrderBy(x => x.CommentDate).ToList();
-            var model = _context.Comments.OrderBy(x => x.CommentDate).FirstOrDefault();
+            ViewBag.Chat = _context.Chat.OrderBy(x => x.ChatDate).ToList();
+            var model = _context.Chat.OrderBy(x => x.ChatDate).FirstOrDefault();
             return View(model);
         }
 
-        public IActionResult CreateComment(Comment comment)
+        public IActionResult CreateChat(Chat comment)
         {
             var curentuser = _userManager.GetUserName(User);
           
-                comment = new Comment()
+                comment = new Chat()
                 {
-                    CommentText = comment.CommentText,
-                    CommentDate = DateTime.Now,
+                    ChatText = comment.ChatText,
+                    ChatDate = DateTime.Now,
                     Username = curentuser,
                 };
                 _context.Add(comment);
@@ -261,7 +289,7 @@ namespace SuperNews.Controllers
                 ModelState.Clear();
 
             
-            return RedirectToAction("CommentIndex", "News");
+            return RedirectToAction("ChatIndex", "News");
 
         }
 

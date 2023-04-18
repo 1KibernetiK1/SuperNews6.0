@@ -22,6 +22,8 @@ namespace SuperNews.Domains
 
         public int? RubricId { get; set; }
 
+        public int Views { get; set; }
+
         //public Comment Comments { get; set; }
 
         public int Likes { get; set; }

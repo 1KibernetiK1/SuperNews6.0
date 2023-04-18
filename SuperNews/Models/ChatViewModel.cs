@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SuperNews.Models
 {
-    public class CommentsViewModel : Comment 
+    public class ChatViewModel : Chat 
     {
-        public int commentId { get; set; }
+        public int ChatId { get; set; }
         //public DateTime CommentDate { get; set; }
-        public string strCommentDate { get {; return this.CommentDate.ToString("dd-MM-yyyy"); } }
+        public string strChatDate { get {; return this.ChatDate.ToString("dd-MM-yyyy"); } }
 
-        public CommentsViewModel()
+        public ChatViewModel()
         {
 
         }

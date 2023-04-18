@@ -30,9 +30,9 @@ namespace SuperNews.Map
                 .Map(dest => dest.Title, src => src.Title)
                 .Map(dest => dest.CreationDate, src => src.CreationDate);
 
-            TypeAdapterConfig<CommentsViewModel, Comment>
+            TypeAdapterConfig<ChatViewModel, Chat>
                 .NewConfig()
-                .Map(dest => dest.CommentId, src => src.CommentId);
+                .Map(dest => dest.ChatId, src => src.ChatId);
                
         }
     }

@@ -7,21 +7,22 @@
                 <header id="header">
                     <h1><a asp-area="" asp-controller="News" asp-action="List" id="logo">SuperNews</a></h1>
                     <nav id="nav">
+                        <a asp-action="ChatIndex"
+                           asp-controller="News"
+                           >
+                            Общий чат
+                        </a>
                                 @if (User.IsInRole(AppRoles.Administrator))
                                 {
-                                        <a
+                                       <a 
                                        asp-controller="Admin"
                                        asp-action="Index">
                                             Управление пользователями
                                         </a>
-                                        <a asp-controller="Rubric"
-                                                asp-action="Create">
-                                                Создание рубрик
-                                        </a>
                                 }
                                 @if (User.IsInRole(AppRoles.Redactor))
                                 {
-                                        <a
+                                <a 
                                        asp-controller="News"
                                        asp-action="Create">
                                             Управление новостями
@@ -29,18 +30,14 @@
                                 }
                                 @if (User.IsInRole(AppRoles.Moderator))
                                 {
-                                        <a
+                                <a 
                                        asp-controller="@AppRoles.Moderator"
                                        asp-action="Index">
                                             Управление новостями
                                         </a>
-                                        <a asp-controller="Rubric"
-                                           asp-action="Create">
-                                            Создание рубрик
-                                        </a>
                                 }
-
                         <partial name="_LoginPartial" />
+
                         <div class="float-right">
                             @await Component.InvokeAsync("Bookmarks")
                         </div>

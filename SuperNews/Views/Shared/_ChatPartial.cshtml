@@ -1,0 +1,26 @@
+﻿@model SuperNews.Domains.Chat
+@*@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager*@
+@{
+
+}
+
+
+@foreach (var item in ViewBag.Chat)
+{
+
+    <div class="card-comment" data-id="@item.ChatId" style="text-align:right">
+
+        <div class="comment-text">
+            <span class="username">
+                @item.Username:
+                <span class="text-muted float-left"> @item.ChatDate</span>
+            </span>
+            @item.ChatText
+        </div>
+     </div>
+
+}
+
+
