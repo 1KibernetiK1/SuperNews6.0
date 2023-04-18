@@ -126,10 +126,43 @@ namespace SuperNews.Controllers
 
         public IActionResult Details(long id)
         {
-            var entity = _repositoryNews.Read(id);
-            var model = entity.Adapt<NewsViewModel>();
+            var entry = _context
+             .News
+             .FirstOrDefault(p => p.NewsId == id);
 
-            return View(model);
+            return View(entry);
+        }
+
+        [Authorize]
+        public JsonResult Like(long Id)
+        {
+            _context.News.Find(Id).Likes++;
+            if (_context.News.Find(Id).Dislikes < 0 || _context.News.Find(Id).Dislikes == 0)
+            {
+                _context.News.Find(Id).Dislikes = 0;
+            }
+            else
+            {
+                _context.News.Find(Id).Dislikes--;
+            }
+            _context.SaveChanges();
+            return Json(_context.News.Find(Id).Likes);
+        }
+
+        [Authorize]
+        public JsonResult Dislike(long Id)
+        {
+            _context.News.Find(Id).Dislikes++;
+            if (_context.News.Find(Id).Likes < 0 || _context.News.Find(Id).Likes == 0)
+            {
+                _context.News.Find(Id).Likes = 0;
+            }
+            else
+            {
+                _context.News.Find(Id).Likes--;
+            }
+            _context.SaveChanges();
+            return Json(_context.News.Find(Id).Dislikes);
         }
 
         public IActionResult Create(long id)
@@ -258,6 +291,8 @@ namespace SuperNews.Controllers
             // в БД заменить на новое имя файла
             editModel.ImageUrl = uniqueName;
         }
+
+       
 
     }
 }

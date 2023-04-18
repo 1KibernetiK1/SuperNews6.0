@@ -37,6 +37,11 @@ namespace SuperNews.Models
         //[DataType(DataType.MultilineText)]
         //public Comment Comments { get; set; }
 
+       
+        public int Likes { get; set; }
+   
+        public int Dislikes { get; set; }
+
         public NewsViewModel()
         {
 

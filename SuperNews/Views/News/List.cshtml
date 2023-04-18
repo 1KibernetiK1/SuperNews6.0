@@ -45,7 +45,7 @@
 
 
 
-@if (User.IsInRole(AppRoles.Moderator) | User.IsInRole(AppRoles.Administrator) | User.IsInRole(AppRoles.Redactor))
+@if (User.IsInRole(AppRoles.Administrator) | User.IsInRole(AppRoles.Redactor))
 {
     <p>
         <a asp-action="Create" class="btn btn-outline-info" style="margin-top: 10px">Создать новость</a>
@@ -57,12 +57,11 @@
         <tr>
                 <td class="news_td">
 
-
                     <div class="creation_date_info">
                         @Html.DisplayFor(modelItem => item.CreationDate)
-                    </div>
+                    </div>             
 
-                    <article class="article_info">
+                    <article class="article_info" id="tbody1">
                        
 
                             <div class="img_info">
@@ -86,12 +85,12 @@
                                        asp-route-urlReturn="@pathAndQuery">@Html.DisplayFor(modelItem => item.Title)</a>
                                     </h2>
 
-                                <div class="description_info">
-                                    <a style="color: black; text-decoration: none;" asp-action="Details"
-                                   asp-controller="News"
-                                   asp-route-id="@item.NewsId"
-                                   asp-route-urlReturn="@pathAndQuery">@Html.DisplayFor(modelItem => item.Description)</a>
-                                </div>
+                                    <div class="description_info">
+                                        <a style="color: black; text-decoration: none;" asp-action="Details"
+                                        asp-controller="News"
+                                        asp-route-id="@item.NewsId"
+                                        asp-route-urlReturn="@pathAndQuery">@Html.DisplayFor(modelItem => item.Description)</a>
+                                    </div>
 
 
                                 </div>
@@ -108,11 +107,6 @@
                             <a asp-action="Delete" asp-route-id="@item.NewsId" asp-route-urlReturn="@pathAndQuery" class="btn btn-danger">Удалить</a>
                         }
                     </div>
-
-                   
-
-
-                    
 
                  
                 </td>
@@ -135,3 +129,6 @@
 }
     </tbody>
 </table>
+
+
+

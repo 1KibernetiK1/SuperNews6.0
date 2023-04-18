@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SuperNews.Abstract;
 using SuperNews.Domains;
 using SuperNews.Models;
+using SuperNews.UsersRoles;
+using System.Data;
 
 namespace SuperNews.Controllers
 {
+    [Authorize(Roles = AppRoles.Administrator)]
     public class RubricController : Controller
     {
         private readonly IRepository<Rubric> _repositoryRubric;
