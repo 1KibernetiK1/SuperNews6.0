@@ -136,7 +136,7 @@ namespace SuperNews.Controllers
             _context.News.Find(id).Views++;
             _context.SaveChanges();
             _newsAndComments.news = _context.News.Find(id);
-            _newsAndComments.comments = _context.Comments.Where(n => n.HaberId == id).ToList();
+            _newsAndComments.comments = _context.Comments.Where(n => n.NewsId == id).ToList();
 
             return View("Details", _newsAndComments);
         }
@@ -151,14 +151,14 @@ namespace SuperNews.Controllers
                     {
                         CommentText = comment.CommentText,
                         Date = comment.Date,
-                        HaberId = comment.HaberId,
+                        NewsId = comment.NewsId,
                         UserName = comment.UserName,
                     };
                     _context.Comments.Add(cm);
                     _context.SaveChanges();
 
             }
-            return RedirectToAction("Details", "News", comment.HaberId);
+            return RedirectToAction("Details", "News", comment.NewsId);
         }
 
         [Authorize]

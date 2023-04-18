@@ -46,7 +46,7 @@
             <form asp-action="Details" asp-controller="News" method="post">
                 <div class="input-group mb-3">
                     <input type="hidden" name="UserName" value="@User.Identity.Name" />
-                    <input type="hidden" name="HaberId" value="@Model.news.NewsId" />
+                    <input type="hidden" name="NewsId" value="@Model.news.NewsId" />
                     <input type="hidden" name="Date" value="@DateTime.Now" />
                     <input type="text" name="CommentText" class="form-control" placeholder="Ваш комментарии" aria-label="Ваш комментарии" aria-describedby="button-addon2" required>
                     <button class="btn btn-outline-success" type="submit" id="button-addon2">Отправить</button>

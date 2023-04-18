@@ -9,6 +9,6 @@ namespace SuperNews.Domains
         public string CommentText { get; set; }
         public DateTime Date { get; set; }
         public string UserName { get; set; }
-        public int HaberId { get; set; }
+        public long NewsId { get; set; }
     }
 }
