@@ -45,6 +45,42 @@ namespace SuperNews.DataAccessLayer
                 userResult = userManager.AddToRoleAsync(user1, AppRoles.Administrator).Result;
             }
 
+            var user2 = new IdentityUser
+            {
+                UserName = "Moderat@ya.ru",
+                Email = "Moderat@ya.ru",
+                EmailConfirmed = true
+            };
+            userResult = userManager.CreateAsync(user2, "1Qwerty!").Result;
+            if (userResult.Succeeded)
+            {
+                userResult = userManager.AddToRoleAsync(user2, AppRoles.Moderator).Result;
+            }
+
+            var user3 = new IdentityUser
+            {
+                UserName = "Guest@ya.ru",
+                Email = "Guest@ya.ru",
+                EmailConfirmed = true
+            };
+            userResult = userManager.CreateAsync(user3, "1Qwerty!").Result;
+            if (userResult.Succeeded)
+            {
+                userResult = userManager.AddToRoleAsync(user3, AppRoles.Guest).Result;
+            }
+
+            var user4 = new IdentityUser
+            {
+                UserName = "Redactor@ya.ru",
+                Email = "Redactor@ya.ru",
+                EmailConfirmed = true
+            };
+            userResult = userManager.CreateAsync(user4, "1Qwerty!").Result;
+            if (userResult.Succeeded)
+            {
+                userResult = userManager.AddToRoleAsync(user4, AppRoles.Redactor).Result;
+            }
+
 
         }
 

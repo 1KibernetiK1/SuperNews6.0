@@ -276,13 +276,13 @@ namespace SuperNews.Controllers
 
         public IActionResult CreateChat(Chat comment)
         {
-            var curentuser = _userManager.GetUserName(User);
+            var currentuser = _userManager.GetUserName(User);
           
                 comment = new Chat()
                 {
                     ChatText = comment.ChatText,
                     ChatDate = DateTime.Now,
-                    Username = curentuser,
+                    Username = currentuser,
                 };
                 _context.Add(comment);
                 _context.SaveChanges();
