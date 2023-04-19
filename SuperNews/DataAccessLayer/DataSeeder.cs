@@ -91,7 +91,6 @@ namespace SuperNews.DataAccessLayer
                 AppRoles.Administrator,
                 AppRoles.Redactor,
                 AppRoles.Moderator,
-                AppRoles.Subscriber,
                 AppRoles.Guest
             };
             if (roleManager.Roles.Count() > 0) return;
