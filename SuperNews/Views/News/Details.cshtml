@@ -8,20 +8,42 @@
     <input type="hidden" id="NewsId" value="@Model.news.NewsId" />
     <h3>@Html.DisplayFor(model => model.news.Title)</h3>
     <h5>@Html.DisplayFor(model => model.news.CreationDate)</h5>
-    <div class="creation_date_info" role="group" aria-label="Vertical radio toggle button group">
-        <input style="display: none;" runat="server" type="radio" class="btn-check btn-sm " name="vbtn-radio" id="vbtn-radio1" autocomplete="off">
-        <label id="label_like" class="btn btn-outline-success justify-content-end" for="vbtn-radio1">
-            <h5 id="likeCount" class="like d-inline fs-4">@Model.news.Likes</h5>
-            <i class="fas fa-chevron-up"></i>
-        </label>
-        <input runat="server" style="display: none;" type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
-        <label id="label_dislike" class="btn btn-outline-danger justify-content-end" for="vbtn-radio2">
-            <h5 id="dislikeCount" class="dislike d-inline fs-4">@Model.news.Dislikes</h5>
-            <i class="fas fa-chevron-down"></i>
-        </label>
-        <p class="fw-bolder">@Model.news.Views Просмотров</p>
-    </div>
-    
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div role="group" aria-label="Vertical radio toggle button group">
+            <input style="display: none;" runat="server" type="radio" class="input_likes btn-check btn-sm " name="vbtn-radio" id="vbtn-radio1" autocomplete="off">
+            <label id="label_like" class="btn btn-outline-success justify-content-end" for="vbtn-radio1">
+                <h5 id="likeCount" class="like d-inline fs-4">@Model.news.Likes</h5>
+                <i class="fas fa-chevron-up"></i>
+            </label>
+            <input runat="server" style="display: none;" type="radio" class="input_dislikes btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+            <label id="label_dislike" class="btn btn-outline-danger justify-content-end" for="vbtn-radio2">
+                <h5 id="dislikeCount" class="dislike d-inline fs-4">@Model.news.Dislikes</h5>
+                <i class="fas fa-chevron-down"></i>
+            </label>
+            <p class="fw-bolder">@Model.news.Views Просмотров</p>
+        </div>
+    }
+    else
+    {
+        <a asp-area="Identity" asp-page="/Account/Login">
+            <div role="group" aria-label="Vertical radio toggle button group">
+                <input style="display: none;" runat="server" type="radio" class="input_likes btn-check btn-sm " name="vbtn-radio" autocomplete="off">
+                <label id="label_like" class="btn btn-outline-success justify-content-end" for="vbtn-radio1">
+                    <h5 class="like d-inline fs-4">@Model.news.Likes</h5>
+                    <i class="fas fa-chevron-up"></i>
+                </label>
+                <input runat="server" style="display: none;" type="radio" class="input_dislikes btn-check" name="vbtn-radio" autocomplete="off">
+                    <label id="label_dislike" class="btn btn-outline-danger justify-content-end" for="vbtn-radio2">
+                        <h5 class="dislike d-inline fs-4">@Model.news.Dislikes</h5>
+                        <i class="fas fa-chevron-down"></i>
+                    </label>
+                    <p class="fw-bolder">@Model.news.Views Просмотров</p>
+            </div>
+         </a>
+      
+    }
+
     <hr />
     <div class="details_info">
            
@@ -63,6 +85,9 @@
 
         <div>
             <ul>
+            <div class="btn btn-light">
+                Комментарии: @Model.comments.Count
+            </div>
                 @foreach (var comment in Model.comments)
                 {
                     if (Model.comments.Count != 0)
@@ -93,38 +118,7 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $("#vbtn-radio1").click(function () {
-        $.post("/News/Like",
-            {
-                Id: $('#NewsId').val(),
-            },
-            function (data, status) {
-                $('#likeCount').text(data);
-                $('#label_like').css("background-color", "#29a442");
-                $('#label_like').css("color", "white");
-                $('#label_dislike').css("background-color", "white");
-                $('#label_dislike').css("color", "#ef3445");
-            });
-        
-    });
-    $("#vbtn-radio2").click(function () {
-        $.post("/News/Dislike",
-            {
-                Id: $('#NewsId').val(),
-            },
-            function (data, status) {
-                $('#dislikeCount').text(data);
-                $('#label_dislike').css("background-color", "#ef3445");
-                $('#label_dislike').css("color", "white");
-                $('#label_like').css("background-color", "white");
-                $('#label_like').css("color", "#29a442");
-            });
-    });
-
-   
-
-</script>
+<script src="~/js/LikeAndDislike.js"></script>
 
 
 

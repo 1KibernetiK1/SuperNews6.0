@@ -63,7 +63,23 @@
 
                     <div class="creation_date_info">
                         @Html.DisplayFor(modelItem => item.CreationDate)
-                    </div>             
+                        <p class="fw-bolder">@item.Views Просмотров</p>
+
+                        <div class="button_like_and_dis" role="group" aria-label="Vertical radio toggle button group">
+                            <input style="display: none;" runat="server" type="radio" class="btn-check btn-sm " name="vbtn-radio" id="vbtn-radio1" autocomplete="off">
+                            <label id="label_like" style="margin-right:3px;" class="btn btn-success justify-content-end" for="vbtn-radio1">
+                                <h5 id="likeCount" class="like d-inline fs-4">@item.Likes</h5>
+                                <i class="fas fa-chevron-up"></i>
+                            </label>
+                            <input runat="server" style="display: none;" type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
+                            <label id="label_dislike" class="btn btn-danger justify-content-end" for="vbtn-radio2">
+                                <h5 id="dislikeCount" class="dislike d-inline fs-4">@item.Dislikes</h5>
+                                <i class="fas fa-chevron-down"></i>
+                            </label>
+                        </div>
+                    </div>
+
+               
 
                     <article class="article_info" id="tbody1">
                        

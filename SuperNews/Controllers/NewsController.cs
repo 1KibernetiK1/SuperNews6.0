@@ -169,7 +169,7 @@ namespace SuperNews.Controllers
                         UserName = comment.UserName,
                     };
                     _context.Comments.Add(cm);
-                    _context.SaveChanges();
+                    _context.SaveChanges();           
 
             }
             return RedirectToAction("Details", "News", comment.NewsId);

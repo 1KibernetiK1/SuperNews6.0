@@ -64,6 +64,12 @@
     padding: 20px 0;
 }
 
+.button_like_and_dis{
+   display: flex;
+   justify-content: end;
+   margin-top: -60px;
+}
+
 
 
 
