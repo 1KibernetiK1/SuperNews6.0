@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SuperNews.Controllers
 {
@@ -28,17 +29,30 @@ namespace SuperNews.Controllers
         private readonly ILogger<NewsController> _logger;
         NewsAndComments _newsAndComments =new NewsAndComments();
 
-        public NewsController(IRepository<News> repositoryArticle, 
+        public NewsController(IRepository<News> repositoryArticle,
             ApplicationDbContext context,
-            UserManager<IdentityUser> userManager, 
+            UserManager<IdentityUser> userManager,
             ILogger<NewsController> logger
             )
         {
             _repositoryNews = repositoryArticle;
-            _context = context; 
+            _context = context;
             _userManager = userManager;
             _logger = logger;
 
+            if (!_context.Rubrics.Any())
+            {
+                Rubric Business = new Rubric { Name = "Бизнес" };
+                Rubric Health = new Rubric { Name = "Здоровье" };
+                Rubric Crime = new Rubric { Name = "Криминал" };
+                Rubric Policy = new Rubric { Name = "Политика" };
+                Rubric Economy = new Rubric { Name = "Экономика" };
+                Rubric Science = new Rubric { Name = "Наука" };
+
+                _context.Rubrics.AddRange(Business, Health, Crime, Policy, Economy, Science);
+                _context.SaveChanges();
+
+            }
         }
 
         public IActionResult BookmarksView(string urlReturn)
@@ -193,11 +207,18 @@ namespace SuperNews.Controllers
             return Json(_context.News.Find(Id).Dislikes);
         }
 
-        public IActionResult Create(long id)
+        public IActionResult Create(long id, int? Rubric, string? name)
         {
-            var manager = _repositoryNews.Read(id);
+            IQueryable<News> news = _context.News.Include(p => p.NewsRubric);
+            List<Rubric> companies = _context.Rubrics.ToList();
 
-            return View(manager);
+            NewsViewModel viewModel = new NewsViewModel
+            {
+                Rubrics = new SelectList(companies, "RubricId", "Name", Rubric),
+            };
+
+
+            return View(viewModel);
         }
 
         [HttpPost]

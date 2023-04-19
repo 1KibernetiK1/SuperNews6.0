@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SuperNews.Models
 {
@@ -25,7 +26,7 @@ namespace SuperNews.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Display(Name = "Дата созданиея новости")]
+        [Display(Name = "Дата создания новости")]
         [DataType(DataType.DateTime)]
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
@@ -41,6 +42,10 @@ namespace SuperNews.Models
         public int Likes { get; set; }
    
         public int Dislikes { get; set; }
+
+        public News News { get; set; }
+
+        public SelectList Rubrics { get; set; } = new SelectList(new List<Rubric>(), "RubricId", "Name");
 
         public NewsViewModel()
         {

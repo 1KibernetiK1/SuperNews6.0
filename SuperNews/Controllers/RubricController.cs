@@ -36,7 +36,7 @@ namespace SuperNews.Controllers
 
             _repositoryRubric.Create(article);
 
-            return RedirectToAction("List", "Rubric");
+            return RedirectToAction("List", "News");
 
 
 
