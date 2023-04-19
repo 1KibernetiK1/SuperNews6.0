@@ -209,7 +209,6 @@ namespace SuperNews.Controllers
 
         public IActionResult Create(long id, int? Rubric, string? name)
         {
-            IQueryable<News> news = _context.News.Include(p => p.NewsRubric);
             List<Rubric> companies = _context.Rubrics.ToList();
 
             NewsViewModel viewModel = new NewsViewModel
