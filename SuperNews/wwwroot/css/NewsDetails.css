@@ -16,3 +16,17 @@
 .detail_description {
     font-size: 22px;
 }
+
+.delete_comment{
+    display: flex; 
+    justify-content: end;
+
+}
+
+.li_comment {
+    
+}
+
+.blockquote_comment {
+    
+}

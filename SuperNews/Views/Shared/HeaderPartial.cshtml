@@ -25,15 +25,7 @@
                                 <a 
                                        asp-controller="News"
                                        asp-action="Create">
-                                            Управление новостями
-                                        </a>
-                                }
-                                @if (User.IsInRole(AppRoles.Moderator))
-                                {
-                                <a 
-                                       asp-controller="@AppRoles.Moderator"
-                                       asp-action="Index">
-                                            Управление новостями
+                                          Создание новостей
                                         </a>
                                 }
                         <partial name="_LoginPartial" />

@@ -11,16 +11,18 @@ using SuperNews.DataAccessLayer;
 using SuperNews.Domains;
 using SuperNews.Helpers;
 using SuperNews.Models;
+using SuperNews.UsersRoles;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Xml.Linq;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SuperNews.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Roles = AppRoles.Administrator)]
     public class NewsController : Controller
     {
         private readonly IRepository<News> _repositoryNews;
@@ -55,6 +57,7 @@ namespace SuperNews.Controllers
             }
         }
 
+        [Authorize]
         public IActionResult BookmarksView(string urlReturn)
         {
             ViewBag.UrlReturn = urlReturn;
@@ -62,6 +65,7 @@ namespace SuperNews.Controllers
             return View(bookmarks);
         }
 
+        [Authorize]
         public IActionResult DecreaseNews(long id, string urlReturn)
         {
             var product = _repositoryNews.Read(id);
@@ -80,6 +84,7 @@ namespace SuperNews.Controllers
             // return View("CartView", cart);
         }
 
+        [Authorize]
         public IActionResult IncreaseNews(long id, string urlReturn)
         {
             var product = _repositoryNews.Read(id);
@@ -97,6 +102,7 @@ namespace SuperNews.Controllers
             // return View("CartView", cart);
         }
 
+        [Authorize]
         public IActionResult AddToBookmarks(long id, string urlReturn)
         {
             var product = _repositoryNews.Read(id);
@@ -115,7 +121,7 @@ namespace SuperNews.Controllers
         }
 
 
-
+        [AllowAnonymous]
         public IActionResult List(int? Rubric, string? name)
         {
             IQueryable<News> news = _context.News.Include(p => p.NewsRubric);
@@ -144,17 +150,22 @@ namespace SuperNews.Controllers
 
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Details(long id)
         {
-            _context.News.Find(id).Views++;
-            _context.SaveChanges();
-            _newsAndComments.news = _context.News.Find(id);
-            _newsAndComments.comments = _context.Comments.Where(n => n.NewsId == id).ToList();
+            if (_context.News.Find(id) != null)
+            {
+                _context.News.Find(id).Views++;
+                _context.SaveChanges();
+                _newsAndComments.news = _context.News.Find(id);
+                _newsAndComments.comments = _context.Comments.Where(n => n.NewsId == id).ToList();
+            }
 
             return View("Details", _newsAndComments);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Details(Comment comment)
         {
@@ -175,6 +186,17 @@ namespace SuperNews.Controllers
             return RedirectToAction("Details", "News", comment.NewsId);
         }
 
+        [Authorize(Roles = $"{AppRoles.Moderator}, {AppRoles.Administrator}")]
+        public IActionResult DeleteComment(int id)
+        {
+         
+                var entry = _context.Comments.Find(id);
+                _context.Comments.Remove(entry);
+                _context.SaveChanges();
+
+            return RedirectToAction("List", "News");
+        }
+
         [Authorize]
         public JsonResult Like(long Id)
         {
@@ -182,10 +204,6 @@ namespace SuperNews.Controllers
             if (_context.News.Find(Id).Dislikes < 0 || _context.News.Find(Id).Dislikes == 0)
             {
                 _context.News.Find(Id).Dislikes = 0;
-            }
-            else
-            {
-                _context.News.Find(Id).Dislikes--;
             }
             _context.SaveChanges();
             return Json(_context.News.Find(Id).Likes);
@@ -199,14 +217,11 @@ namespace SuperNews.Controllers
             {
                 _context.News.Find(Id).Likes = 0;
             }
-            else
-            {
-                _context.News.Find(Id).Likes--;
-            }
             _context.SaveChanges();
             return Json(_context.News.Find(Id).Dislikes);
         }
 
+        [Authorize(Roles = $"{AppRoles.Redactor}, {AppRoles.Administrator}")]
         public IActionResult Create(long id, int? Rubric, string? name)
         {
             List<Rubric> companies = _context.Rubrics.ToList();
@@ -220,6 +235,7 @@ namespace SuperNews.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = $"{AppRoles.Redactor}, {AppRoles.Administrator}")]
         [HttpPost]
         public IActionResult Create(NewsViewModel model)
         {
@@ -246,6 +262,7 @@ namespace SuperNews.Controllers
            
         }
 
+        [Authorize(Roles = $"{AppRoles.Moderator}, {AppRoles.Administrator}")]
         public IActionResult Delete(long id)
         {
             _repositoryNews.Delete(id);
@@ -253,7 +270,7 @@ namespace SuperNews.Controllers
             return RedirectToAction("List", "News");
         }
 
-        
+        [Authorize(Roles = $"{AppRoles.Moderator}, {AppRoles.Administrator}, {AppRoles.Redactor}")]
         public IActionResult Edit(long id)
         {
             var entity = _repositoryNews.Read(id);
@@ -262,6 +279,7 @@ namespace SuperNews.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = $"{AppRoles.Moderator}, {AppRoles.Administrator}, {AppRoles.Redactor}")]
         [HttpPost]
         public IActionResult Edit(NewsViewModel model)
         {
@@ -313,8 +331,8 @@ namespace SuperNews.Controllers
 
         }
 
-       
 
+        [Authorize(Roles = $"{AppRoles.Moderator}, {AppRoles.Administrator}, {AppRoles.Redactor}")]
         private void UploadImage(NewsViewModel editModel)
         {
             if (editModel.ImageFile == null)

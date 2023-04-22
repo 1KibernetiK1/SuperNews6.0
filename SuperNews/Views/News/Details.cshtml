@@ -1,10 +1,15 @@
-﻿@model SuperNews.Domains.NewsAndComments
+﻿@using SuperNews.UsersRoles;
+@model SuperNews.Domains.NewsAndComments
 
 @{
     ViewData["Title"] = "Details";
+
+    string pathAndQuery =
+           Context.Request.Path +
+           Context.Request.QueryString;
 }
 
-<div>
+<div> 
     <input type="hidden" id="NewsId" value="@Model.news.NewsId" />
     <h3>@Html.DisplayFor(model => model.news.Title)</h3>
     <h5>@Html.DisplayFor(model => model.news.CreationDate)</h5>
@@ -92,11 +97,18 @@
                 {
                     if (Model.comments.Count != 0)
                     {
-                        <li class="my-2">
+                        <li class="li_comment my-2">
                             <div class="card w-75">
                                 <div class="card-body">
-                                    <blockquote class="blockquote mb-0">
+                                <blockquote class="blockquote_comment blockquote mb-0">
                                         <p>@comment.CommentText</p>
+
+                                        @if (User.IsInRole(AppRoles.Moderator))
+                                        {
+                                        <div class="delete_comment">
+                                            <a asp-action="DeleteComment" asp-route-id="@comment.Id" asp-route-urlReturn="@pathAndQuery" class="btn btn-danger">Удалить</a>
+                                            </div>
+                                        }
                                         <footer class="blockquote-footer text-right"> <b>@comment.UserName</b> @comment.Date</footer>
                                     </blockquote>
                                 </div>

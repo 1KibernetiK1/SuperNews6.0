@@ -11,8 +11,7 @@ using System.Threading.Tasks;
 
 namespace SuperNews.Controllers
 {
-    [AllowAnonymous]
-    //[Authorize(Roles = AppRoles.Administrator)]
+    [Authorize(Roles = AppRoles.Administrator)]
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
