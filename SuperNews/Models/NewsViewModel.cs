@@ -14,7 +14,7 @@ namespace SuperNews.Models
     [AllowAnonymous]
     public class NewsViewModel
     {
-        [Required]
+
         public IFormFile ImageFile { get; set; }
 
         [Display(Name = "Рубрика")]
@@ -36,7 +36,7 @@ namespace SuperNews.Models
         [DataType(DataType.DateTime)]
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
-        [Required]
+ 
         [Display(Name = "Картинка новости")]
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }

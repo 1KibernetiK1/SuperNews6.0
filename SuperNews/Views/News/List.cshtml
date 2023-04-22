@@ -1,17 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Authorization;
 @using SuperNews.UsersRoles;
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model SuperNews.Models.NewsListViewModel
 @inject IAuthorizationService AuthorizationService
+@addTagHelper *, SuperNews
 
 @{
     string pathAndQuery =
             Context.Request.Path +
             Context.Request.QueryString;
-
-    ViewData["Title"] = Model.Rubrics == null
-    ? "Новости"
-    : $"Новости ({Model.Rubrics})";
 }
 
 <h1>Новости</h1>
@@ -29,11 +25,11 @@
             <div class="card-body">
                 <form method="get">
                     <div class="form-group">
-                        <label>Имя: </label>
-                        <input asp-for="Name" class="form-control" id="exampleFormControlInput1" />
+                        <label>Название: </label>
+                        <input name="name" value="@Model.FilterViewModel.SelectedName" class="form-control" />
 
                         <label>Рубрика: </label>
-                        <select name="Rubric" asp-items="Model.Rubrics" class="form-control" id="exampleFormControlSelect1"></select>
+                        <select name="rubric" asp-items="Model.FilterViewModel.Rubrics" class="form-control" id="exampleFormControlSelect1"></select>
 
                         <input type="submit" value="Поиск" class="btn btn-info" style="margin-top: 10px" />
                     </div>
@@ -141,6 +137,29 @@
 }
     </tbody>
 </table>
+
+
+<div class="pagination_list">
+    <a asp-action="List"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       asp-route-title="@(Model.FilterViewModel.SelectedName)"
+       asp-route-rubric="@(Model.FilterViewModel.SelectedRubric)"
+       class="back_btn btn  btn-outline-dark"><</a>
+
+    <page-link page-model="Model.PageViewModel" page-action="List"
+               page-url-title="@(Model.FilterViewModel.SelectedName)"
+               page-url-rubric="@(Model.FilterViewModel.SelectedRubric)"></page-link>
+
+    <a asp-action="List"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       asp-route-title="@(Model.FilterViewModel.SelectedName)"
+       asp-route-rubric="@(Model.FilterViewModel.SelectedRubric)"
+       class="forward_btn btn btn-outline-dark">
+        >
+    </a>
+</div>
+  
+
 
 
 

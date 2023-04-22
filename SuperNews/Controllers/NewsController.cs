@@ -122,8 +122,10 @@ namespace SuperNews.Controllers
 
 
         [AllowAnonymous]
-        public IActionResult List(int? Rubric, string? name)
+        public IActionResult List(int? Rubric, string? name, int page = 1)
         {
+            int pageSize = 5;
+
             IQueryable<News> news = _context.News.Include(p => p.NewsRubric);
 
             if (Rubric != null && Rubric != 0)
@@ -135,16 +137,14 @@ namespace SuperNews.Controllers
                 news = news.Where(p => p.Title!.Contains(name));
             }
 
-            List<Rubric> companies = _context.Rubrics.ToList();
-
-            // устанавливаем начальный элемент, который позволит выбрать всех
-            companies.Insert(0, new Rubric { Name = "Все", RubricId = 0 });
+            var count =  news.Count();
+            var items =  news.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             NewsListViewModel viewModel = new NewsListViewModel
             {
-                News = news.ToList(),
-                Rubrics = new SelectList(companies, "RubricId", "Name", Rubric),
-                Name = name
+                News = items,
+                PageViewModel = new PageViewModel(count, page, pageSize),
+                FilterViewModel = new FilterViewModel(_context.Rubrics.ToList(), Rubric, name),
             };
             return View(viewModel);
 

@@ -7,9 +7,12 @@ namespace SuperNews.Models
 {
     public class NewsListViewModel
     {
-        public IEnumerable<News> News { get; set; } = new List<News>();
+        public IEnumerable<News> News { get; set; } 
 
-        public SelectList Rubrics { get; set; } = new SelectList(new List<Rubric>(), "RubricId", "Name");
-        public string? Name { get; set; }
+        public PageViewModel PageViewModel { get; set; }
+
+        public FilterViewModel FilterViewModel { get; set; }
+
+
     }
 }
