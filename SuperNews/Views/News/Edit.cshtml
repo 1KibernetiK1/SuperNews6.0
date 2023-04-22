@@ -32,7 +32,14 @@
 
             <div class="form-group">
                 <label asp-for="Rubric" class="control-label"></label>
-                <select asp-items="Model.Rubrics" asp-for="News.RubricId"></select>
+                <select asp-for="Rubric">
+                    <option value="1">Бизнес</option>
+                    <option value="2">Здоровье</option>
+                    <option value="3">Криминал</option>
+                    <option value="4">Политика</option>
+                    <option value="5">Экономика</option>
+                    <option value="6">Наука</option>
+                </select>
                 <span asp-validation-for="Rubric" class="text-danger"></span>
             </div>
             <div class="form-group">
