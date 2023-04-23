@@ -8,13 +8,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SuperNews.DataAccessLayer;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SuperNews.Models
 {
     [AllowAnonymous]
     public class NewsViewModel
     {
-
+        [Required]
         public IFormFile ImageFile { get; set; }
 
         [Display(Name = "Рубрика")]
@@ -36,7 +37,7 @@ namespace SuperNews.Models
         [DataType(DataType.DateTime)]
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
- 
+        [Required]
         [Display(Name = "Картинка новости")]
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
@@ -52,7 +53,7 @@ namespace SuperNews.Models
 
         public News News { get; set; }
 
-        public SelectList Rubrics { get; set; } = new SelectList(new List<Rubric>(), "RubricId", "Name");
+        public SelectList Rubrics { get; set; }
 
         public ApplicationDbContext  _context{ get; set; }
 
@@ -63,14 +64,10 @@ namespace SuperNews.Models
            
         }
 
-        public NewsViewModel(News news)
+        public SelectList SelectRubrics { get; private set; } // список рубрик
+        public NewsViewModel(List<Rubric> rubrics, int? rubric)
         {
-            Rubric = news.RubricId;
-            NewsId = news.NewsId;
-            Title = news.Title;
-            Description = news.Description;
-            CreationDate = news.CreationDate;
-            ImageUrl = news.ImageUrl;
+            Rubrics = new SelectList(rubrics, "RubricId", "Name", rubric);
         }
 
 

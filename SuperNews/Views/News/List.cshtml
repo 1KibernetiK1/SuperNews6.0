@@ -138,13 +138,14 @@
     </tbody>
 </table>
 
-
-<div class="pagination_list">
+@if (Model.News.Any())
+{
+    <div class="pagination_list">
     <a asp-action="List"
        asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
        asp-route-title="@(Model.FilterViewModel.SelectedName)"
        asp-route-rubric="@(Model.FilterViewModel.SelectedRubric)"
-       class="back_btn btn  btn-outline-dark"><</a>
+           class="back_btn btn  btn-outline-dark"> ← </a>
 
     <page-link page-model="Model.PageViewModel" page-action="List"
                page-url-title="@(Model.FilterViewModel.SelectedName)"
@@ -155,9 +156,10 @@
        asp-route-title="@(Model.FilterViewModel.SelectedName)"
        asp-route-rubric="@(Model.FilterViewModel.SelectedRubric)"
        class="forward_btn btn btn-outline-dark">
-        >
+       →
     </a>
-</div>
+</div>   
+}
   
 
 

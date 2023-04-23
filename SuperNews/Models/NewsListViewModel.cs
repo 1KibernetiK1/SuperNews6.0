@@ -13,6 +13,8 @@ namespace SuperNews.Models
 
         public FilterViewModel FilterViewModel { get; set; }
 
+      
+
 
     }
 }
