@@ -8,7 +8,7 @@ using System.Data;
 
 namespace SuperNews.Controllers
 {
-    [Authorize(Roles = AppRoles.Administrator)]
+    [Authorize(Roles = $"{AppRoles.Administrator}, {AppRoles.Redactor}")]
     public class RubricController : Controller
     {
         private readonly IRepository<Rubric> _repositoryRubric;

@@ -385,6 +385,7 @@ namespace SuperNews.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult ChatIndex()
         {
             ViewBag.Chat = _context.Chat.OrderBy(x => x.ChatDate).ToList();
@@ -392,6 +393,7 @@ namespace SuperNews.Controllers
             return View(model);
         }
 
+        [Authorize]
         public IActionResult CreateChat(Chat comment)
         {
             var currentuser = _userManager.GetUserName(User);
