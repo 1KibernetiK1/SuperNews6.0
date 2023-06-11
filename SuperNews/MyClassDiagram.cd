@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SuperNews.BusinessLogic.Bookmarks" Collapsed="true">
+    <Position X="7.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAQAAAAAABAAAA=</HashCode>
+      <FileName>BusinessLogic\Bookmarks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.BusinessLogic.BookmarksRecord" Collapsed="true">
+    <Position X="9" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>BusinessLogic\Bookmarks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Components.BookmarksViewComponent" Collapsed="true">
+    <Position X="3.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\BookmarksViewComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Components.MenuRubricsViewComponent" Collapsed="true">
+    <Position X="5.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\MenuRubricsViewComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Controllers.AdminController" Collapsed="true">
+    <Position X="3.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACABAAAAQAAAAAEAAAAAAAgAAEAAEACCAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\AdminController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Controllers.NewsController" Collapsed="true">
+    <Position X="7.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhEABAAAAAABBBAAIAAAAAwAIAGAAGADAAAAAAABAAI=</HashCode>
+      <FileName>Controllers\NewsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Controllers.PermissionController" Collapsed="true">
+    <Position X="9" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\PermissionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Controllers.RubricController" Collapsed="true">
+    <Position X="5.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\RubricController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.DataAccessLayer.ApplicationDbContext" Collapsed="true">
+    <Position X="3.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAACAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAIAA=</HashCode>
+      <FileName>DataAccessLayer\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.DataAccessLayer.DataSeeder" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAEAEAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccessLayer\DataSeeder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.DataAccessLayer.NewsSqlRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABAAAIAAAAAAgAAEAAEAAAAAAAAACAAI=</HashCode>
+      <FileName>DataAccessLayer\NewsSqlRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SuperNews.DataAccessLayer.RubricSqlRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABAAAIAAAAAAgAAEAAEAAAAAAAAACAAI=</HashCode>
+      <FileName>DataAccessLayer\RubricSqlRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SuperNews.Domains.Chat" Collapsed="true">
+    <Position X="5.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAEAAAAAAAQAAAAAAAAAAAAAAAgAAAAAAAAQ=</HashCode>
+      <FileName>Domains\Chat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Domains.Comment" Collapsed="true">
+    <Position X="9" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAgAAAAAAAAAAAAAAAAAAABAQAAAAAAAAA=</HashCode>
+      <FileName>Domains\Comment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Domains.News" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgAAQgAAAAAgAEAAAAAAAAAAACAAAAACAAQAAAAAAAA=</HashCode>
+      <FileName>Domains\News.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Domains.NewsAndComments" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Domains\NewsAndComments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Domains.Rubric" Collapsed="true">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAQAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Domains\Rubric.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Helpers.AttributeManager" Collapsed="true">
+    <Position X="5.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\AttributeManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Helpers.ClaimsHelper" Collapsed="true">
+    <Position X="3.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Helpers\ClaimsHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Helpers.HttpContextExtension" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\HttpContextExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Helpers.PageLinkTagHelper" Collapsed="true">
+    <Position X="9" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAIAAAAAgABAAEAAAAAAAAAAAAAIAAAACA=</HashCode>
+      <FileName>Helpers\PageLinkTagHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Map.MapModels" Collapsed="true">
+    <Position X="3.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Map\MapModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.ChangeRoleViewModel" Collapsed="true">
+    <Position X="5.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAgAAAAAAAgAAAAACAAAAAA=</HashCode>
+      <FileName>Models\ChangeRoleViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.ChatViewModel" Collapsed="true">
+    <Position X="3.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAQ=</HashCode>
+      <FileName>Models\ChatViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.ErrorViewModel" Collapsed="true">
+    <Position X="7.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.FilterViewModel" Collapsed="true">
+    <Position X="10.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FilterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.NewsListViewModel" Collapsed="true">
+    <Position X="10.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAACAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\NewsListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.NewsShortModel" Collapsed="true">
+    <Position X="9" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\NewsShortModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.NewsViewModel" Collapsed="true">
+    <Position X="10.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAEAQAAACAAgBEAAIAAAAAAAAAAEAAACAAQAAAAAAAA=</HashCode>
+      <FileName>Models\NewsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.PageViewModel" Collapsed="true">
+    <Position X="10.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.PermissionViewModel" Collapsed="true">
+    <Position X="10.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PermissionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.RoleClaimsViewModel" Collapsed="true">
+    <Position X="10.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAI=</HashCode>
+      <FileName>Models\PermissionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.RegisterModel" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAEAAAEAAAggAAAAgCAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RegisterModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.RubricViewModel" Collapsed="true">
+    <Position X="10.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RubricViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.Models.UserRolesViewModel" Collapsed="true">
+    <Position X="3.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAAAgAAgAAAAAAAQAAAAAAAAg=</HashCode>
+      <FileName>Models\UserRolesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.UsersRoles.AppRoles" Collapsed="true">
+    <Position X="7.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAEAEAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>UsersRoles\AppRoles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.UsersRoles.PermissionAuthorizationHandler" Collapsed="true">
+    <Position X="9" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsersRoles\PermissionAuthorizationHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperNews.UsersRoles.PermissionPolicyProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAABAAAAAAAgAAABAAA=</HashCode>
+      <FileName>UsersRoles\PermissionPolicyProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SuperNews.UsersRoles.PermissionRequirement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsersRoles\PermissionRequirement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SuperNews.UsersRoles.Permissions" Collapsed="true">
+    <Position X="9" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>UsersRoles\Permissions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="SuperNews.Abstract.IRepository&lt;T&gt;" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAIAAAAAAgAAEAAEAAAAAAAAACAAI=</HashCode>
+      <FileName>Abstract\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
